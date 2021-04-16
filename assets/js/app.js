@@ -104,20 +104,26 @@ acc.forEach(function(acr){
      acr.addEventListener("click",function(){
          const panel=this.nextElementSibling;
          if(panel.style.visibility==="visible"){
-        const next=document.querySelectorAll(".accordion__panel");
-        next.forEach(function(e){
-            e.style.maxHeight="0px";
-            e.style.visibility="hidden";
-        })
+            panel.style.maxHeight="0px";
+            panel.style.visibility="hidden";
+            const accActive=panel.previousElementSibling;
+            accActive.classList.remove("active-accordion");
     }
     else{
         const next=document.querySelectorAll(".accordion__panel");
+        const acc1=document.querySelectorAll(".accordion");
+        acc1.forEach(function(e){
+            e.classList.remove("active-accordion");
+        })
         next.forEach(function(e){
             e.style.maxHeight="0px";
             e.style.visibility="hidden";
+            
         })
         panel.style.maxHeight="300px";
         panel.style.visibility="visible";
+        const accActive=panel.previousElementSibling;
+        accActive.classList.add("active-accordion");
     }
        
         })
